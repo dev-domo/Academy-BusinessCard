@@ -420,5 +420,21 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F802C26B-1F77-44F4-9398-01FE26156AC3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Challenge2-BusinessCardTests/NameTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "&#xc774;&#xb984;&#xc5d0;_&#xd2b9;&#xc218;&#xbb38;&#xc790;&#xac00;_&#xd3ec;&#xd568;&#xb41c;_&#xacbd;&#xc6b0;_Name_&#xac1d;&#xccb4;&#xb294;_&#xc0dd;&#xc131;&#xb418;&#xc9c0;_&#xc54a;&#xb294;&#xb2e4;()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

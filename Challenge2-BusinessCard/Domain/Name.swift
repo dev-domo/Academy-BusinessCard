@@ -1,5 +1,5 @@
 //
-//  Nickname.swift
+//  Name.swift
 //  Challenge2-BusinessCard
 //
 //  Created by 더스틴 on 4/26/26.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Nickname {
+struct Name {
     
     let string: String
     
-    private enum NicknameRule {
-        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[A-Z][a-z]{1,9}$")
+    private enum NameRule {
+        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[가-힣]{1,10}$")
     }
     
     init?(string: String) {
-        guard NicknameRule.predicate.evaluate(with: string) else {
+        guard NameRule.predicate.evaluate(with: string) else {
             return nil
         }
         
