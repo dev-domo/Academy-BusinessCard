@@ -36,4 +36,13 @@ struct NicknameTests {
         
         #expect(nickname == nil)
     }
+    
+    @Test
+    func 닉네임의_첫_글자가_영문_대문자가_아닌_경우_Nickname_객체는_생성되지_않는다() {
+        let string = "dustin"
+        
+        let nickname = Nickname(string: string)
+        
+        #expect(nickname == nil)
+    }
 }
