@@ -45,4 +45,13 @@ struct NameTests {
         
         #expect(name == nil)
     }
+    
+    @Test
+    func 이름이_10글자_이하의_한글로_구성된_경우_Name_객체가_생성된다() {
+        let string = "가나다라마바사아자차"
+        
+        let name = Name(string: string)
+        
+        #expect(name != nil)
+    }
 }
