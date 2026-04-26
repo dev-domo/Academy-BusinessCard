@@ -27,4 +27,13 @@ struct NameTests {
         
         #expect(name == nil)
     }
+    
+    @Test
+    func 이름에_영어가_포함된_경우_Name_객체는_생성되지_않는다() {
+        let string = "가나다a"
+        
+        let name = Name(string: string)
+        
+        #expect(name == nil)
+    }
 }
