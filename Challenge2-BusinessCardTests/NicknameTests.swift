@@ -19,4 +19,12 @@ struct NicknameTests {
         #expect(nickname == nil)
     }
 
+    @Test
+    func 닉네임에_숫자가_포함된_경우_Nickname_객체는_생성되지_않는다() {
+        let string = "Dus3tin"
+        
+        let nickname = Nickname(string: string)
+        
+        #expect(nickname == nil)
+    }
 }
