@@ -12,7 +12,7 @@ struct Nickname {
     let string: String
     
     private enum NicknameRule {
-        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[A-Z][a-z]+$")
+        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[A-Z][a-z]{1,9}$")
     }
     
     init?(string: String) {
