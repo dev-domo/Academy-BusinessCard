@@ -54,4 +54,13 @@ struct NicknameTests {
         
         #expect(nickname == nil)
     }
+    
+    @Test
+    func 닉네임이_한_글자인_경우_Nickname_객체는_생성되지_않는다() {
+        let string = "D"
+        
+        let nickname = Nickname(string: string)
+        
+        #expect(nickname == nil)
+    }
 }
