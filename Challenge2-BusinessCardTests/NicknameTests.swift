@@ -45,4 +45,13 @@ struct NicknameTests {
         
         #expect(nickname == nil)
     }
+    
+    @Test
+    func 닉네임의_두번째_글자부터_마지막_글자에_영문_대문자가_포함_경우_Nickname_객체는_생성되지_않는다() {
+        let string = "DusTin"
+        
+        let nickname = Nickname(string: string)
+        
+        #expect(nickname == nil)
+    }
 }
