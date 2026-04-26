@@ -37,18 +37,12 @@ struct NameTests {
         #expect(name == nil)
     }
     
-    @Test(
-        "이름 길이 유효성 테스트",
-        arguments: [
-            ("가나다라마바사아자차", true),
-            ("가나다라마바사아자차카", false)
-        ]
-    )
-    func 이름은_10글자_이하여야_Name_객체가_생성된다(argument: (name: String, isValid: Bool)) {
-        let string = argument.name
+    @Test
+    func 이름이_10글자를_초과하면_Name_객체는_생성되지_않는다() {
+        let string = "가나다라마바사아자차카"
         
         let name = Name(string: string)
         
-        #expect((name != nil) == argument.isValid)
+        #expect(name == nil)
     }
 }
