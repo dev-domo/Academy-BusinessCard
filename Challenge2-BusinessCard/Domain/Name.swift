@@ -12,7 +12,7 @@ struct Name {
     let string: String
     
     private enum NameRule {
-        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[가-힣]")
+        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[가-힣]{1,10}$")
     }
     
     init?(string: String) {
