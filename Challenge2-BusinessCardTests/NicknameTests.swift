@@ -65,8 +65,17 @@ struct NicknameTests {
     }
     
     @Test
-    func 닉네임이_영문_대문자로_시작하고_이후_글자가_영문_소문자인_경우_Nickname_객체가_생성된다() {
-        let string = "Dustin"
+    func 닉네임이_10글자를_초과하는_경우_Nickname_객체는_생성되지_않는다() {
+        let string = "Abcdefghijk"
+        
+        let nickname = Nickname(string: string)
+        
+       #expect(nickname == nil)
+    }
+    
+    @Test
+    func 닉네임이_영문_대문자로_시작하고_이후_글자가_영문_소문자이며_총_10글자_이하인_경우_Nickname_객체가_생성된다() {
+        let string = "Abcdefghij"
         
         let nickname = Nickname(string: string)
         
