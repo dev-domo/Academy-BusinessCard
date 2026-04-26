@@ -27,4 +27,13 @@ struct NicknameTests {
         
         #expect(nickname == nil)
     }
+    
+    @Test
+    func 닉네임에_한글이_포함된_경우_Nickname_객체는_생성되지_않는다() {
+        let string = "더stin"
+        
+        let nickname = Nickname(string: string)
+        
+        #expect(nickname == nil)
+    }
 }
