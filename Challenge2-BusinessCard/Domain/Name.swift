@@ -9,7 +9,7 @@ import Foundation
 
 struct Name {
     
-    var string: String
+    private var string: String
     
     private enum NameRule {
         static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[가-힣]{1,10}$")
