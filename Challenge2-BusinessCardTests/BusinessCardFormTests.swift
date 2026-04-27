@@ -18,4 +18,14 @@ struct BusinessCardFormTests {
             try form.build()
         }
     }
+    
+    @Test
+    func 이름이_없으면_명함은_생성되지_않는다() {
+        var form = BusinessCardForm()
+        form.nickname = Nickname(string: "Dustin")
+        
+        #expect(throws: BusinessCardForm.BuildError.missingName) {
+            try form.build()
+        }
+    }
 }
