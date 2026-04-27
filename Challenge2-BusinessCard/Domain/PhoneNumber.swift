@@ -13,7 +13,7 @@ struct PhoneNumber {
     private let suffixOffset: Int = 7
     private let seperator: Character = " "
     
-    let string: String
+    var string: String
     
     var formatted: String {
         var numberString = string
