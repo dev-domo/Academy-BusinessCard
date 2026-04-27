@@ -28,4 +28,15 @@ struct BusinessCardFormTests {
             try form.build()
         }
     }
+    
+    @Test
+    func 전화번호가_없으면_명함은_생성되지_않는다() {
+        var form = BusinessCardForm()
+        form.nickname = Nickname(string: "Dustin")
+        form.name = Name(string: "가나다")
+        
+        #expect(throws: BusinessCardForm.BuildError.missingPhoneNumber) {
+            try form.build()
+        }
+    }
 }
