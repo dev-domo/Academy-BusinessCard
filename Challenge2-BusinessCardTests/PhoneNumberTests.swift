@@ -34,4 +34,13 @@ struct PhoneNumberTests {
         
         #expect(phoneNumber != nil)
     }
+    
+    @Test
+    func 전화번호는_공백으로_구분된다() {
+        let string = "01012345678"
+        
+        let phoneNumber = PhoneNumber(string: string)
+        
+        #expect(phoneNumber?.formatted == "010 1234 5678")
+    }
 }
