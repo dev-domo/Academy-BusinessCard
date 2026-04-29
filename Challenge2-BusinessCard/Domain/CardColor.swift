@@ -29,7 +29,7 @@ struct CardColor {
     
     init?(color: Color) {
         let isValidColor = ColorRule.allCases.first { $0.color == color }
-        guard let isValidColor else {
+        guard let _ = isValidColor else {
             return nil
         }
         
