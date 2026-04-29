@@ -5,6 +5,7 @@
 //  Created by 더스틴 on 4/26/26.
 //
 
+import SwiftUI
 import Testing
 @testable import Challenge2_BusinessCard
 
@@ -14,9 +15,9 @@ struct BusinessCardFormTests {
     func 닉네임이_없으면_명함은_생성되지_않는다() {
         let form = BusinessCardForm()
         
-        #expect(throws: BusinessCardForm.BuildError.missingNickname) {
-            try form.build()
-        }
+        let result = form.build()
+        
+        #expect(result == nil)
     }
     
     @Test
@@ -24,9 +25,9 @@ struct BusinessCardFormTests {
         var form = BusinessCardForm()
         form.nickname = Nickname(string: "Dustin")
         
-        #expect(throws: BusinessCardForm.BuildError.missingName) {
-            try form.build()
-        }
+        let result = form.build()
+        
+        #expect(result == nil)
     }
     
     @Test
@@ -35,9 +36,9 @@ struct BusinessCardFormTests {
         form.nickname = Nickname(string: "Dustin")
         form.name = Name(string: "가나다")
         
-        #expect(throws: BusinessCardForm.BuildError.missingPhoneNumber) {
-            try form.build()
-        }
+        let result = form.build()
+        
+        #expect(result == nil)
     }
     
     @Test
@@ -47,9 +48,9 @@ struct BusinessCardFormTests {
         form.name = Name(string: "가나다")
         form.phoneNumber = PhoneNumber(string: "01012345678")
         
-        #expect(throws: BusinessCardForm.BuildError.missingDomain) {
-            try form.build()
-        }
+        let result = form.build()
+        
+        #expect(result == nil)
     }
     
     @Test
@@ -60,8 +61,22 @@ struct BusinessCardFormTests {
         form.phoneNumber = PhoneNumber(string: "01012345678")
         form.domain = UserDomain(field: .tech)
         
-        #expect(throws: BusinessCardForm.BuildError.missingCardColor) {
-            try form.build()
-        }
+        let result = form.build()
+        
+        #expect(result == nil)
+    }
+    
+    @Test
+    func 닉네임_이름_전화번호_도메인_명함색상이_모두_입력되어야_명함을_생성할_수_있다() {
+        var form = BusinessCardForm()
+        form.nickname = Nickname(string: "Dustin")
+        form.name = Name(string: "가나다")
+        form.phoneNumber = PhoneNumber(string: "01012345678")
+        form.domain = UserDomain(field: .tech)
+        form.cardColor = CardColor(color: .black)
+        
+        let result = form.build()
+        
+        #expect(result != nil)
     }
 }
