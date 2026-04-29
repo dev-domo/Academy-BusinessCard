@@ -15,7 +15,7 @@ struct Nickname {
     }
     
     private enum NicknameRule {
-        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[A-Z][a-z]{1,9}$")
+        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, "^[A-Z][a-z]{1,9}$")
     }
     
     init?(string: String) {

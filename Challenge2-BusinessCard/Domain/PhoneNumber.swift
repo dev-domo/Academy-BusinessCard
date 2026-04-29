@@ -29,7 +29,7 @@ struct PhoneNumber {
     }
     
     private enum PhoneNumberRule {
-        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^010[0-9]{8}$")
+        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, "^010[0-9]{8}$")
     }
     
     init?(string: String) {
