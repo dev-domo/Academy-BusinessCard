@@ -10,6 +10,9 @@ import Foundation
 struct Nickname {
     
     private var string: String
+    var toString: String {
+        string
+    }
     
     private enum NicknameRule {
         static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[A-Z][a-z]{1,9}$")
