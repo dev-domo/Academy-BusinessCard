@@ -17,4 +17,11 @@ struct CardColorTests {
         
         #expect(color == nil)
     }
+    
+    @Test("CardColor 생성", arguments: [Color.black, Color.blue, Color.red, Color.cyan])
+    func black_red_blue_cyan_색상으로만_CardColor_객체를_생성할_수_있다(color: Color) {
+        let color = CardColor(color: color)
+        
+        #expect(color != nil)
+    }
 }
