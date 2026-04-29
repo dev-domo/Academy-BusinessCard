@@ -43,6 +43,24 @@ class BusinessCard {
         )
     }
     
+    convenience init(
+        nickname: Nickname,
+        name: Name,
+        phoneNumber: PhoneNumber,
+        field: UserDomain,
+        cardColor: CardColor,
+        origin: CardOrigin
+    ) {
+        self.init(
+            nickname: nickname.toString,
+            name: name.toString,
+            phoneNumber: phoneNumber.formatted,
+            field: field.name,
+            color: .init(color: cardColor.color),
+            origin: origin.rawValue
+        )
+    }
+    
     func toDTO() -> BusinessCardDTO {
         .init(
             nickname: nickname,
