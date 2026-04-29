@@ -11,12 +11,14 @@ struct BusinessCardForm {
     var name: Name?
     var phoneNumber: PhoneNumber?
     var domain: UserDomain?
+    var cardColor: CardColor?
     
     enum BuildError: Error {
         case missingNickname
         case missingName
         case missingPhoneNumber
         case missingDomain
+        case missingCardColor
     }
     
     func build() throws {
@@ -24,5 +26,6 @@ struct BusinessCardForm {
         guard let name else { throw BuildError.missingName }
         guard let phoneNumber else { throw BuildError.missingPhoneNumber }
         guard let domain else { throw BuildError.missingDomain }
+        guard let cardColor else { throw BuildError.missingCardColor }
     }
 }

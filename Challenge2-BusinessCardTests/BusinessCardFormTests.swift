@@ -51,4 +51,17 @@ struct BusinessCardFormTests {
             try form.build()
         }
     }
+    
+    @Test
+    func 명함_색상이_없으면_명함은_생성되지_않는다() {
+        var form = BusinessCardForm()
+        form.nickname = Nickname(string: "Dustin")
+        form.name = Name(string: "가나다")
+        form.phoneNumber = PhoneNumber(string: "01012345678")
+        form.domain = UserDomain(field: .tech)
+        
+        #expect(throws: BusinessCardForm.BuildError.missingCardColor) {
+            try form.build()
+        }
+    }
 }
