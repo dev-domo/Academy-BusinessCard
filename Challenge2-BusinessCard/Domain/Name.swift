@@ -9,10 +9,14 @@ import Foundation
 
 struct Name {
     
-    let string: String
+    private static let nameRegex = "^[가-힣]{1,10}$"
+    private var string: String
+    var toString: String {
+        string
+    }
     
     private enum NameRule {
-        static let predicate = NSPredicate(format: "SELF MATCHES %@", "^[가-힣]{1,10}$")
+        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, nameRegex)
     }
     
     init?(string: String) {
