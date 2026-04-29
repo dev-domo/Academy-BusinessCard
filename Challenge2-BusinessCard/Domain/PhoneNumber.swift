@@ -9,6 +9,7 @@ import Foundation
 
 struct PhoneNumber {
     
+    private static let phoneNumberRegex = "^010[0-9]{8}$"
     private let prefixOffset: Int = 3
     private let suffixOffset: Int = 7
     private let seperator: Character = " "
@@ -29,7 +30,7 @@ struct PhoneNumber {
     }
     
     private enum PhoneNumberRule {
-        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, "^010[0-9]{8}$")
+        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, phoneNumberRegex)
     }
     
     init?(string: String) {

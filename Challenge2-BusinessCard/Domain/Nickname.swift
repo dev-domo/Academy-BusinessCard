@@ -9,13 +9,14 @@ import Foundation
 
 struct Nickname {
     
+    private static let nicknameRegex = "^[A-Z][a-z]{1,9}$"
     private var string: String
     var toString: String {
         string
     }
     
     private enum NicknameRule {
-        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, "^[A-Z][a-z]{1,9}$")
+        static let predicate = NSPredicate(format: Validation.regexPredicateFormat, nicknameRegex)
     }
     
     init?(string: String) {
