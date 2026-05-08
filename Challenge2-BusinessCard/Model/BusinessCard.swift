@@ -6,6 +6,7 @@
 //
 
 import SwiftData
+import SwiftUI
 
 @Model
 class BusinessCard {
@@ -59,6 +60,22 @@ class BusinessCard {
             color: .init(color: cardColor.color),
             origin: origin.rawValue
         )
+    }
+    
+    func update(
+        nickname: String,
+        name: String,
+        phoneNumber: String,
+        field: Field,
+        cardColor: Color
+    ) -> Self {
+        self.nickname = nickname
+        self.name = name
+        self.phoneNumber = phoneNumber
+        self.field = field.name
+        self.color = .init(color: cardColor)
+        
+        return self
     }
     
     func toDTO() -> BusinessCardDTO {
