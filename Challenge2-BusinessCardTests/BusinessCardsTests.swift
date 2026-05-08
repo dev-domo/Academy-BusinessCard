@@ -66,11 +66,20 @@ struct BusinessCardsTests {
     }
     
     @Test("닉네임 기반 명함 검색", arguments: [("Ab", "Abcd"), ("Ef", nil)])
-    func 닉네임으로_명함을_검색할_수_있다(target: (searchName: String, nickname: String?)) {
+    func 닉네임으로_명함을_검색할_수_있다(target: (searchNickname: String, nickname: String?)) {
         guard let cards else { return }
         
-        let result = cards.findByNickname(target.searchName)
+        let result = cards.findByNickname(target.searchNickname)
         
         #expect(result.first?.nickname == target.nickname)
+    }
+    
+    @Test("이름 기반 명함 검색", arguments: [("가나", "가나다"), ("라마", nil)])
+    func 이름으로_명함을_검색할_수_있다(target: (searchName: String, name: String?)) {
+        guard let cards else { return }
+        
+        let result = cards.findByName(target.searchName)
+        
+        #expect(result.first?.name == target.name)
     }
 }

@@ -21,7 +21,11 @@ class BusinessCards {
         return cards.remove(at: targetIndex)
     }
     
-    func findByNickname(_ searchName: String) -> [BusinessCard] {
-        cards.filter { $0.nickname.contains(searchName) }
+    func findByNickname(_ searchNickname: String) -> [BusinessCard] {
+        cards.filter { $0.nickname.contains(searchNickname) }
+    }
+    
+    func findByName(_ searchName: String) -> [BusinessCard] {
+        cards.filter { $0.name.contains(searchName) }
     }
 }
