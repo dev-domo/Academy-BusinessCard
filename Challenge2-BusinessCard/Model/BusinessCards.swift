@@ -20,4 +20,8 @@ class BusinessCards {
         let targetIndex = sharedCardIndices[index]
         return cards.remove(at: targetIndex)
     }
+    
+    func findByNickname(_ searchName: String) -> [BusinessCard] {
+        cards.filter { $0.nickname.contains(searchName) }
+    }
 }
