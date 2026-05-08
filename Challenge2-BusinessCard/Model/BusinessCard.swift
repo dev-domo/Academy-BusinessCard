@@ -68,7 +68,11 @@ class BusinessCard {
         phoneNumber: String,
         field: Field,
         cardColor: Color
-    ) -> Self {
+    ) -> Self? {
+        guard self.origin == CardOrigin.mine.rawValue else {
+            return nil
+        }
+        
         self.nickname = nickname
         self.name = name
         self.phoneNumber = phoneNumber
