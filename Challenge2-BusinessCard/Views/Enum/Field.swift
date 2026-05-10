@@ -2,12 +2,12 @@
 //  Field.swift
 //  Challenge2-BusinessCard
 //
-//  Created by 더스틴 on 4/22/26.
+//  Created by 더스틴 on 5/9/26.
 //
 
 import Foundation
 
-enum Field: String, CaseIterable {
+enum Field: String {
     case tech
     case design
     case domain

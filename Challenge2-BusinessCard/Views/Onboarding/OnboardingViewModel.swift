@@ -2,7 +2,7 @@
 //  OnboardingViewModel.swift
 //  Challenge2-BusinessCard
 //
-//  Created by 더스틴 on 4/22/26.
+//  Created by 더스틴 on 5/9/26.
 //
 
 import Combine
@@ -11,107 +11,57 @@ import SwiftUI
 
 final class OnboardingViewModel: ObservableObject {
     
+    private var context: ModelContext?
     @Published var step: OnboardingStep = .first
     @Published var nickname: String = ""
     @Published var name: String = ""
     @Published var phoneNumber: String = ""
     @Published var field: Field = .tech
     @Published var cardColor: Color = .black
-}
-
-extension OnboardingViewModel {
     
-    var isValid: Bool {
-        switch step {
-        case .first:
-            !nickname.isEmpty
-        case .second:
-            !name.isEmpty
-        case .third:
-            !phoneNumber.isEmpty
-        case .fourth, .fifth:
-            true
-        }
-    }
-    
-    var isLastStep: Bool {
-        step.isLast
-    }
-    
-    var currentGuide: String {
-        step.guide
-    }
-    
-    var backable: Bool {
-        step.rawValue >= OnboardingStep.second.rawValue
-    }
-    
-    var isNeedTextFieldStep: Bool {
-        step.rawValue <= OnboardingStep.third.rawValue
-    }
-    
-    @ViewBuilder
-    var inputInformationView: some View {
-        switch step {
-        case .first:
-            OnboardingTextField(
-                placeHolder: step.placeHolder ?? "",
-                text: Binding(
-                    get: { self.nickname },
-                    set: { self.nickname = $0 }
-                )
-            )
-        case .second:
-            OnboardingTextField(
-                placeHolder: step.placeHolder ?? "",
-                text: Binding(
-                    get: { self.name },
-                    set: { self.name = $0 }
-                )
-            )
-        case .third:
-            OnboardingTextField(
-                placeHolder: step.placeHolder ?? "",
-                text: Binding(
-                    get: { self.phoneNumber },
-                    set: { self.phoneNumber = $0 }
-                )
-            )
-            .keyboardType(.numberPad)
-        case .fourth:
-            DomainPicker(
-                field: Binding(
-                    get: { self.field },
-                    set: { self.field = $0 }
-                )
-            )
-        case .fifth:
-            SelectCardColorView(
-                card: .init(
-                    nickname: nickname,
-                    name: name,
-                    phoneNumber: phoneNumber,
-                    field: field.name
-                ),
-                color: Binding(
-                    get: { self.cardColor },
-                    set: { self.cardColor = $0 }
-                )
-            )
-        }
-    }
-}
-
-extension OnboardingViewModel {
-    
-    func stepUp() -> Bool {
-        let beforeStep = step
-        step = step.next
+    var textFieldStrokeColor: Color? {
+        let currentInput = step.currentInput(for: self)
         
-        return beforeStep == step
+        guard let currentInput,
+              !currentInput.isEmpty
+        else {
+            return .gray.opacity(0.2)
+        }
+        
+        return isValid ? .green : .red
     }
     
-    func stepDown() {
-        step = step.previous
+    private var isValid: Bool {
+        return step.isValid(for: self)
+    }
+    
+    func configure(context: ModelContext) {
+        self.context = context
+    }
+    
+    func updateStep() {
+        if step.isLast {
+            if let card = createBusinessCardForm().build() {
+                saveCard(card)
+                return
+            }
+        } else {
+            step = step.next
+        }
+    }
+    
+    private func createBusinessCardForm() -> BusinessCardForm {
+        var form = BusinessCardForm()
+        form.nickname = Nickname(string: nickname)
+        form.name = Name(string: name)
+        form.phoneNumber = PhoneNumber(string: phoneNumber)
+        form.domain = UserDomain(field: field)
+        form.cardColor = CardColor(color: cardColor)
+        
+        return form
+    }
+    
+    private func saveCard(_ card: BusinessCard) {
+        context?.insert(card)
     }
 }

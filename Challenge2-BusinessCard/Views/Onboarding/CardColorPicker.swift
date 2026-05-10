@@ -2,7 +2,7 @@
 //  CardColorPicker.swift
 //  Challenge2-BusinessCard
 //
-//  Created by 더스틴 on 4/22/26.
+//  Created by 더스틴 on 5/9/26.
 //
 
 import SwiftUI
@@ -20,7 +20,6 @@ struct CardColorPicker: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                 )
-                .frame(maxWidth: .infinity)
                 .frame(height: 70)
             
             HStack {
@@ -40,8 +39,6 @@ struct CardColorPicker: View {
                         .padding(.horizontal, 8)
                 }
             }
-            .padding()
         }
-        .frame(width: 315)
     }
 }

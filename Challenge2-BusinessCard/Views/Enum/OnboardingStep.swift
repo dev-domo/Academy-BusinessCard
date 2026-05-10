@@ -32,21 +32,6 @@ extension OnboardingStep {
         }
     }
     
-    var placeHolder: String? {
-        switch self {
-        case .first:
-            "영문 닉네임"
-        case .second:
-            "이름"
-        case .third:
-            "전화번호(- 없이 숫자만 입력)"
-        case .fourth:
-            "도메인"
-        case .fifth:
-            nil
-        }
-    }
-    
     var buttonName: String {
         switch self {
         case .first, .second, .third, .fourth:
@@ -66,6 +51,34 @@ extension OnboardingStep {
     
     var isLast: Bool {
         self == .fifth
+    }
+    
+    func currentInput(for viewModel: OnboardingViewModel) -> String? {
+        switch self {
+        case .first:
+            return viewModel.nickname
+        case .second:
+            return viewModel.name
+        case .third:
+            return viewModel.phoneNumber
+        case .fourth, .fifth:
+            return nil
+        }
+    }
+    
+    func isValid(for viewModel: OnboardingViewModel) -> Bool {
+        switch self {
+        case .first:
+            return Nickname(string: viewModel.nickname) != nil
+        case .second:
+            return Name(string: viewModel.name) != nil
+        case .third:
+            return PhoneNumber(string: viewModel.phoneNumber) != nil
+        case .fourth:
+            return true
+        case .fifth:
+            return CardColor(color: viewModel.cardColor) != nil
+        }
     }
     
     private func getNewStep(to move: Int) -> Self? {

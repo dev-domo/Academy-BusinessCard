@@ -18,8 +18,7 @@ struct SplashView: View {
         }
         .padding()
         .sheet(isPresented: $isPressed) {
-            OnboardingView(isPresented: $isPressed)
-                .presentationDetents([.large])
+            OnboardingView(viewModel: OnboardingViewModel())
         }
     }
 }
